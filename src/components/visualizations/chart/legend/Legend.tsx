@@ -1,6 +1,6 @@
 // (C) 2007-2019 GoodData Corporation
 import * as React from 'react';
-import * as Measure from 'react-measure';
+import Measure from 'react-measure';
 import * as cx from 'classnames';
 
 import FluidLegend from './FluidLegend';
@@ -69,14 +69,17 @@ export default class Legend extends React.PureComponent<ILegendProps, ILegendSta
         const { chartType } = this.props;
 
         return (
-            <Measure>
-                {({ width }: any) => (
-                    <div className="viz-fluid-legend-wrap">
+            <Measure client={true}>
+                {({ measureRef, contentRect }: any) => (
+                    <div
+                        className="viz-fluid-legend-wrap"
+                        ref={measureRef}
+                    >
                         <FluidLegend
                             series={this.getSeries()}
                             chartType={chartType}
                             onItemClick={this.onItemClick}
-                            containerWidth={width}
+                            containerWidth={contentRect.client.width}
                         />
                     </div>
                 )}
@@ -100,12 +103,15 @@ export default class Legend extends React.PureComponent<ILegendProps, ILegendSta
         };
 
         return (
-            <Measure>
-                {(dimensions: any) => (
-                    <div className={classNames}>
+            <Measure client={true}>
+                {({ measureRef, contentRect }: any) => (
+                    <div
+                        className={classNames}
+                        ref={measureRef}
+                    >
                         <StaticLegend
                             {...props}
-                            containerHeight={height || dimensions.height}
+                            containerHeight={height || contentRect.client.height}
                         />
                     </div>
                 )}
