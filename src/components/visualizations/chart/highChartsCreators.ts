@@ -1,12 +1,11 @@
 // (C) 2007-2019 GoodData Corporation
-import get = require("lodash/get");
 import merge = require("lodash/merge");
 import * as invariant from "invariant";
 import { getCommonConfiguration } from "./highcharts/commonConfiguration";
 
 import { stringifyChartTypes } from "../utils/common";
 
-import { IChartConfig, IChartLimits, IChartOptions } from "../../../interfaces/Config";
+import { IChartConfig, IChartOptions } from "../../../interfaces/Config";
 
 import { getLineConfiguration } from "./highcharts/lineConfiguration";
 import { getBarConfiguration } from "./highcharts/barConfiguration";
@@ -51,32 +50,4 @@ export function getHighchartsOptions(chartOptions: IChartOptions, drillConfig: a
         getConfigurationByType.call(null, config),
         getCustomizedConfiguration(chartOptions, config, drillConfig),
     );
-}
-
-export function isDataOfReasonableSize(chartData: any, limits: IChartLimits, isViewByTwoAttributes = false) {
-    let result = true;
-
-    const seriesLimit = get(limits, "series");
-    if (seriesLimit !== undefined) {
-        result = result && chartData.series.length <= seriesLimit;
-    }
-
-    const categoriesLimit = get(limits, "categories");
-    if (categoriesLimit !== undefined) {
-        if (isViewByTwoAttributes) {
-            const categoriesLength = chartData.categories.reduce((result: number, category: any) => {
-                return result + category.categories.length;
-            }, 0);
-            result = result && categoriesLength <= categoriesLimit;
-        } else {
-            result = result && chartData.categories.length <= categoriesLimit;
-        }
-    }
-
-    const dataPointsLimit = get(limits, "dataPoints");
-    if (dataPointsLimit !== undefined) {
-        result = result && chartData.series.every((serie: any) => serie.data.length <= dataPointsLimit);
-    }
-
-    return result;
 }

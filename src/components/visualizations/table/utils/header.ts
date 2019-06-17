@@ -1,26 +1,22 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as classNames from "classnames";
 import { clamp } from "lodash";
 import { string } from "@gooddata/js-utils";
 import { IMappingHeader } from "../../../../interfaces/MappingHeader";
 import { getMappingHeaderLocalIdentifier } from "../../../../helpers/mappingHeader";
-
 import { getHiddenRowsOffset } from "./row";
-import { getFooterHeight } from "./footer";
-import { DEFAULT_ROW_HEIGHT, DEFAULT_HEADER_HEIGHT } from "../TableVisualization";
+
 import {
     Align,
     IAlignPoint,
     IHeaderTooltipArrowPosition,
+    IPositions,
     ITableColumnProperties,
     ITableDimensions,
-    IPositions,
 } from "../../../../interfaces/Table";
-import { ALIGN_LEFT } from "../constants/align";
 import { ITotalWithData } from "../../../../interfaces/Totals";
-
-const HEADER_PADDING: number = 8;
-const MOBILE_SORT_TOOLTIP_OFFSET: number = 20;
+import { ALIGN_LEFT, HEADER_PADDING, MOBILE_SORT_TOOLTIP_OFFSET } from "../constants/tableConstants";
+import { getFooterHeight, getHeaderOffset } from "./layoutUtils";
 
 const isLeftAligned: (align: Align) => boolean = (align: Align) => align === ALIGN_LEFT;
 
@@ -63,10 +59,6 @@ export function getHeaderClassNames(header: IMappingHeader): string {
         "gd-table-header-ordering",
         `s-id-${simplifyText(getMappingHeaderLocalIdentifier(header))}`,
     );
-}
-
-export function getHeaderOffset(hasHiddenRows: boolean): number {
-    return DEFAULT_HEADER_HEIGHT + (hasHiddenRows ? 1.5 : 1) * DEFAULT_ROW_HEIGHT;
 }
 
 export function isHeaderAtDefaultPosition(stickyHeaderOffset: number, tableTop: number): boolean {

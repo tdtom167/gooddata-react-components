@@ -1,18 +1,17 @@
-// (C) 2007-2018 GoodData Corporation
-import { remove, cloneDeep, sortedUniq, clone, without, omit, sortBy, get } from "lodash";
+// (C) 2007-2019 GoodData Corporation
+import { clone, cloneDeep, get, omit, remove, sortBy, sortedUniq, without } from "lodash";
 import { AFM } from "@gooddata/typings";
 import { InjectedIntl } from "react-intl";
 import {
+    IMappingHeader,
     isMappingHeaderAttribute,
     isMappingHeaderMeasureItem,
-    IMappingHeader,
 } from "../../../../interfaces/MappingHeader";
 import { IIndexedTotalItem, ITotalWithData } from "../../../../interfaces/Totals";
 import { IAlignPoint, ITotalsDataSource, ITotalTypeWithTitle } from "../../../../interfaces/Table";
 
-import { getFooterHeight } from "../utils/footer";
-
-export const AVAILABLE_TOTALS: AFM.TotalType[] = ["sum", "max", "min", "avg", "med", "nat"];
+import { AVAILABLE_TOTALS } from "../constants/tableConstants";
+import { getFooterHeight } from "../utils/layoutUtils";
 
 export const isNativeTotal = (total: AFM.ITotalItem) => {
     return total && total.type === "nat";

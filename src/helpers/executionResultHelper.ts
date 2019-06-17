@@ -1,9 +1,9 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { Execution } from "@gooddata/typings";
 import * as invariant from "invariant";
-import { IUnwrappedAttributeHeadersWithItems } from "../components/visualizations/chart/chartOptionsBuilder";
 import { IMappingHeader } from "../interfaces/MappingHeader";
 import { getMappingHeaderLocalIdentifier } from "./mappingHeader";
+import { IUnwrappedAttributeHeadersWithItems } from "../components/visualizations/chart/typings/chartOptionsBuilder";
 
 export function findInDimensionHeaders(
     dimensions: Execution.IResultDimension[],

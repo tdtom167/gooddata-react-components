@@ -1,11 +1,11 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import isNil = require("lodash/isNil");
 import { VisualizationObject } from "@gooddata/typings";
-import { IAreaChartProps } from "../../components/AreaChart";
 import { IChartConfig } from "../..";
 import BucketItem = VisualizationObject.BucketItem;
 import IVisualizationAttribute = VisualizationObject.IVisualizationAttribute;
 import { getViewByTwoAttributes } from "./common";
+import { IAreaChartProps } from "../../proptypes/AreaChart";
 
 function getStackConfiguration(config: IChartConfig = {}): IChartConfig {
     const { stackMeasures, stackMeasuresToPercent } = config;

@@ -11,17 +11,12 @@ import {
 } from "../../../helpers/executionResultHelper";
 import Menu from "../../menu/Menu";
 import { getParsedFields } from "./agGridUtils";
-import { IMenuAggregationClickConfig } from "../../../interfaces/PivotTable";
+import { IAggregationsMenuColumnTotal, IMenuAggregationClickConfig } from "../../../interfaces/PivotTable";
 import { IOnOpenedChangeParams } from "../../menu/MenuSharedTypes";
-import { AVAILABLE_TOTALS } from "../../visualizations/table/totals/utils";
 import AggregationsSubMenu from "./AggregationsSubMenu";
 import menuHelper from "./aggregationsMenuHelper";
 import { FIELD_TYPE_ATTRIBUTE } from "./agGridConst";
-
-export interface IColumnTotal {
-    type: AFM.TotalType;
-    attributes: string[];
-}
+import { AVAILABLE_TOTALS } from "../../visualizations/table/constants/tableConstants";
 
 export interface IAggregationsMenuProps {
     intl: ReactIntl.InjectedIntl;
@@ -106,7 +101,10 @@ export default class AggregationsMenu extends React.Component<IAggregationsMenuP
         );
     }
 
-    private getColumnTotals(measureLocalIdentifiers: string[], isAttributeHeader: boolean): IColumnTotal[] {
+    private getColumnTotals(
+        measureLocalIdentifiers: string[],
+        isAttributeHeader: boolean,
+    ): IAggregationsMenuColumnTotal[] {
         const columnTotals = this.props.getTotals() || [];
 
         if (isAttributeHeader) {
@@ -152,7 +150,7 @@ export default class AggregationsMenu extends React.Component<IAggregationsMenuP
     }
 
     private renderMainMenuItems(
-        columnTotals: IColumnTotal[],
+        columnTotals: IAggregationsMenuColumnTotal[],
         measureLocalIdentifiers: string[],
         rowAttributeHeaders: Execution.IAttributeHeader[],
     ) {

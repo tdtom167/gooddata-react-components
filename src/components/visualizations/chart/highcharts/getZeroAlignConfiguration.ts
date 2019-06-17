@@ -15,7 +15,7 @@ import isNil = require("lodash/isNil");
 import zip = require("lodash/zip");
 import sum = require("lodash/sum");
 
-import { PERCENT_STACK } from "./getOptionalStackingConfiguration";
+import { PERCENT_STACK } from "../chartOptionsBuilder";
 import { IChartOptions, IHighChartAxis, ISeriesDataItem, ISeriesItem } from "../../../../interfaces/Config";
 import { isComboChart, isLineChart } from "../../utils/common";
 

@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { AFM, Execution, VisualizationObject } from "@gooddata/typings";
 import * as invariant from "invariant";
 import * as React from "react";
@@ -7,8 +7,8 @@ import noop = require("lodash/noop");
 import { convertDrillableItemsToPredicates } from "../../../helpers/headerPredicate";
 import { getSanitizedStackingConfigFromAfm } from "../../../helpers/optionalStacking/common";
 import { IChartConfig, IChartOptions } from "../../../interfaces/Config";
-import { IDrillableItem } from "../../../interfaces/DrillEvents";
-import { OnFiredDrillEvent, OnLegendReady } from "../../../interfaces/Events";
+import { IDrillableItem, OnFiredDrillEvent } from "../../../interfaces/DrillEvents";
+import { OnLegendReady } from "../../../interfaces/Events";
 import { IHeaderPredicate } from "../../../interfaces/HeaderPredicate";
 import { ILegendOptions } from "../typings/legend";
 import { getChartOptions, validateData } from "./chartOptionsBuilder";

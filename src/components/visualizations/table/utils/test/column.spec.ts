@@ -1,9 +1,9 @@
 // (C) 2007-2018 GoodData Corporation
 import { IMappingHeader } from "../../../../../interfaces/MappingHeader";
-import { ALIGN_LEFT, ALIGN_RIGHT } from "../../constants/align";
 import { getColumnAlign } from "../column";
 
 import { TABLE_HEADERS_2A_3M } from "../../fixtures/2attributes3measures";
+import { ALIGN_LEFT, ALIGN_RIGHT } from "../../constants/tableConstants";
 
 const ATTRIBUTE_HEADER: IMappingHeader = TABLE_HEADERS_2A_3M[0];
 const FIRST_MEASURE_HEADER: IMappingHeader = TABLE_HEADERS_2A_3M[2];

@@ -2,7 +2,6 @@
 import {
     calculateArrowPosition,
     getHeaderClassNames,
-    getHeaderOffset,
     isHeaderAtDefaultPosition,
     isHeaderAtEdgePosition,
     getHeaderPositions,
@@ -12,11 +11,11 @@ import {
 
 import { IPositions, ITableDimensions } from "../../../../../interfaces/Table";
 
-import { ALIGN_LEFT, ALIGN_RIGHT } from "../../constants/align";
 import { TABLE_HEADERS_2A_3M } from "../../fixtures/2attributes3measures";
 import { TOTALS_DEFINITION_3 } from "../fixtures/totalsWithData";
 import { ITotalWithData } from "../../../../../interfaces/Totals";
 import "jest";
+import { ALIGN_LEFT, ALIGN_RIGHT } from "../../constants/tableConstants";
 
 const ATTRIBUTE_HEADER = TABLE_HEADERS_2A_3M[0];
 
@@ -71,18 +70,6 @@ describe("Table utils - Header", () => {
             expect(getHeaderClassNames(ATTRIBUTE_HEADER)).toEqual(
                 "gd-table-header-ordering s-id-1st_attr_df_local_identifier",
             );
-        });
-    });
-
-    describe("getHeaderOffset", () => {
-        it("should return proper header offset", () => {
-            const hasHiddenRows: boolean = true;
-            expect(getHeaderOffset(hasHiddenRows)).toEqual(71);
-        });
-
-        it("should return zero header offset when table has no hidden rows", () => {
-            const hasHiddenRows: boolean = false;
-            expect(getHeaderOffset(hasHiddenRows)).toEqual(56);
         });
     });
 

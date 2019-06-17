@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import * as classNames from "classnames";
 import { noop } from "lodash";
@@ -7,7 +7,6 @@ import List from "@gooddata/goodstrap/lib/List/List";
 import Dropdown, { DropdownBody } from "@gooddata/goodstrap/lib/Dropdown/Dropdown";
 import { IMappingHeader } from "../../../../interfaces/MappingHeader";
 
-import { TOTALS_TYPES_DROPDOWN_WIDTH } from "../TableVisualization";
 import { DropdownItem } from "./DropdownItem";
 import { IAddTotalButtonProps, AddTotalButton } from "./AddTotalButton";
 import { getAddTotalDropdownAlignPoints, shouldShowAddTotalButton } from "./utils";
@@ -63,6 +62,7 @@ export class AddTotal extends React.Component<IAddTotalProps, IAddTotalState> {
             addingMoreTotalsEnabled,
         } = this.props;
 
+        const TOTALS_TYPES_DROPDOWN_WIDTH: number = 150;
         const isFirstColumn = columnIndex === 0;
         const isLastColumn = columnIndex === headersCount - 1;
 

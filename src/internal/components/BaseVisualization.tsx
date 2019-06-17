@@ -10,7 +10,6 @@ import { AFM, Execution, VisualizationObject, VisualizationClass } from "@goodda
 import { IDrillableItem } from "../../interfaces/DrillEvents";
 import { DataLayer } from "@gooddata/gooddata-js";
 import * as VisEvents from "../../interfaces/Events";
-import { VisualizationEnvironment } from "../../components/uri/Visualization";
 import { VisualizationTypes } from "../../constants/visualizationTypes";
 import {
     ILocale,
@@ -39,6 +38,7 @@ import { PluggableComboChart } from "./pluggableVisualizations/comboChart/Plugga
 import { PluggableTreemap } from "./pluggableVisualizations/treeMap/PluggableTreemap";
 import { PluggableFunnelChart } from "./pluggableVisualizations/funnelChart/PluggableFunnelChart";
 import { PluggableBubbleChart } from "./pluggableVisualizations/bubbleChart/PluggableBubbleChart";
+import { VisualizationEnvironment } from "../../components/uri/typings/visualizations";
 
 // visualization catalogue - add your new visualization here
 const VisualizationsCatalog = {

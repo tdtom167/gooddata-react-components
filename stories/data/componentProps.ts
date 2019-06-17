@@ -1,6 +1,5 @@
 // (C) 2007-2019 GoodData Corporation
 import { VisualizationObject, AFM, Execution } from "@gooddata/typings";
-import { IColumnTotal } from "../../src/components/core/pivotTable/AggregationsMenu";
 import {
     arithmeticMeasure,
     attributeSortItem,
@@ -10,6 +9,7 @@ import {
     measure,
     attribute,
 } from "../../src/helpers/model";
+import { IAggregationsMenuColumnTotal } from "../../src/interfaces/PivotTable";
 
 export const MEASURE_1: VisualizationObject.IMeasure = measure("/gdc/md/storybook/obj/1").localIdentifier(
     "m1",
@@ -186,7 +186,7 @@ export const GRAND_TOTAL_SUM: AFM.ITotalItem = {
     measureIdentifier: "1st_measure_local_identifier",
 };
 
-export const COLUMN_TOTAL_1ST_2ND_ATTR_MAX: IColumnTotal = {
+export const COLUMN_TOTAL_1ST_2ND_ATTR_MAX: IAggregationsMenuColumnTotal = {
     type: "max",
     attributes: ["1st_attr_df_local_identifier", "2nd_attr_df_local_identifier"],
 };

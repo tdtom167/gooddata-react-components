@@ -28,7 +28,7 @@ import {
     isInPercent,
 } from "./dataLabelsHelpers";
 import { HOVER_BRIGHTNESS, MINIMUM_HC_SAFE_BRIGHTNESS } from "./commonConfiguration";
-import { AXIS_LINE_COLOR, getLighterColor } from "../../utils/color";
+import { getLighterColor } from "../../utils/color";
 import {
     isBarChart,
     isColumnChart,
@@ -51,6 +51,7 @@ import {
 import getOptionalStackingConfiguration from "./getOptionalStackingConfiguration";
 import { IDrillConfig } from "../../../../interfaces/DrillEvents";
 import { getZeroAlignConfiguration } from "./getZeroAlignConfiguration";
+import { AXIS_LINE_COLOR } from "../../utils/constantsColor";
 
 const { stripColors, numberFormat }: any = numberJS;
 

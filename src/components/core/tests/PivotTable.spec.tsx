@@ -14,7 +14,7 @@ import agGridApiWrapper from "../pivotTable/agGridApiWrapper";
 
 const intl = createIntlMock();
 
-describe("PivotTable", () => {
+describe("PivotTable.ts.tsx", () => {
     function renderComponent(
         customProps: Partial<IPivotTableInnerProps> = {},
         dataSource = oneMeasureDataSource,

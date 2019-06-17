@@ -1,9 +1,9 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { mount } from "enzyme";
 import * as React from "react";
 import { createIntlMock } from "../../../visualizations/utils/intlUtils";
-import { IColumnTotal } from "../AggregationsMenu";
 import AggregationsSubMenu, { IAggregationsSubMenuProps } from "../AggregationsSubMenu";
+import { IAggregationsMenuColumnTotal } from "../../../../interfaces/PivotTable";
 
 describe("AggregationsSubMenu", () => {
     const intlMock = createIntlMock();
@@ -73,7 +73,7 @@ describe("AggregationsSubMenu", () => {
     });
 
     it("should render both attributes as selected", () => {
-        const columnTotals: IColumnTotal[] = [
+        const columnTotals: IAggregationsMenuColumnTotal[] = [
             {
                 type: "sum",
                 attributes: ["1st_attr_df_local_identifier", "2nd_attr_df_local_identifier"],

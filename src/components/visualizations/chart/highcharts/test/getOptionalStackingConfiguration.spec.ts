@@ -8,9 +8,8 @@ import getOptionalStackingConfiguration, {
     getStackMeasuresConfiguration,
     getYAxisConfiguration,
     setDrillConfigToXAxis,
-    PERCENT_STACK,
-    NORMAL_STACK,
 } from "../getOptionalStackingConfiguration";
+import { PERCENT_STACK, NORMAL_STACK } from "../../chartOptionsBuilder";
 import { IDrillConfig } from "../../../../../interfaces/DrillEvents";
 import { IChartConfig, ISeriesItem, IChartOptions } from "../../../../../interfaces/Config";
 import { VisualizationTypes } from "../../../../../constants/visualizationTypes";

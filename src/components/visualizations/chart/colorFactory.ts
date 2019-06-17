@@ -1,31 +1,30 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { AFM, Execution } from "@gooddata/typings";
-import { TypeGuards, IColor, IColorItem, IGuidColorItem, RGBType } from "@gooddata/gooddata-js";
-import range = require("lodash/range");
-import uniqBy = require("lodash/uniqBy");
-import isEqual = require("lodash/isEqual");
+import { IColor, IColorItem, IGuidColorItem, RGBType, TypeGuards } from "@gooddata/gooddata-js";
 
 import {
-    DEFAULT_COLOR_PALETTE,
-    HEATMAP_BLUE_COLOR_PALETTE,
-    getLighterColorFromRGB,
-    isCustomPalette,
     getColorByGuid,
-    getRgbStringFromRGB,
     getColorFromMapping,
-    DEFAULT_HEATMAP_BLUE_COLOR,
+    getLighterColorFromRGB,
+    getRgbStringFromRGB,
+    isCustomPalette,
 } from "../utils/color";
-import { isHeatmap, isOneOfTypes, isTreemap, isScatterPlot, isBubbleChart } from "../utils/common";
+import { isBubbleChart, isHeatmap, isOneOfTypes, isScatterPlot, isTreemap } from "../utils/common";
 import { VisualizationTypes } from "../../../constants/visualizationTypes";
-import { isDerivedMeasure, findParentMeasureIndex } from "./chartOptionsBuilder";
 import {
-    IColorPalette,
-    IColorMapping,
+    DEFAULT_COLOR_PALETTE,
     IColorAssignment,
+    IColorMapping,
+    IColorPalette,
     IColorPaletteItem,
 } from "../../../interfaces/Config";
 import { IMappingHeader } from "../../../interfaces/MappingHeader";
 import { findMeasureGroupInDimensions } from "../../../helpers/executionResultHelper";
+import { DEFAULT_HEATMAP_BLUE_COLOR, HEATMAP_BLUE_COLOR_PALETTE } from "../utils/constantsColor";
+import { findParentMeasureIndex, isDerivedMeasure } from "./chartOptionsBuilderUtils";
+import range = require("lodash/range");
+import uniqBy = require("lodash/uniqBy");
+import isEqual = require("lodash/isEqual");
 
 export interface IColorStrategy {
     getColorByIndex(index: number): string;

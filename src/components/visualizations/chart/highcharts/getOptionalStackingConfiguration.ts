@@ -26,9 +26,7 @@ import {
     isPrimaryYAxis,
 } from "../../utils/common";
 import { IDrillConfig } from "../../../../interfaces/DrillEvents";
-
-export const NORMAL_STACK = "normal";
-export const PERCENT_STACK = "percent";
+import { NORMAL_STACK, PERCENT_STACK } from "./../chartOptionsBuilder";
 
 /**
  * Set 'normal' stacking config to single series which will overwrite config in 'plotOptions.series'

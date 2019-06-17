@@ -38,11 +38,11 @@ import { expandTotalsInResultSpec } from "../../../utils/executionObjectHelper";
 import { DEFAULT_TABLE_UICONFIG } from "../../../constants/uiConfig";
 import { AbstractPluggableVisualization } from "../AbstractPluggableVisualization";
 import { getReferencePointWithSupportedProperties } from "../../../utils/propertiesHelper";
-import { VisualizationEnvironment } from "../../../../components/uri/Visualization";
 import { VisualizationTypes } from "../../../../constants/visualizationTypes";
 import { Table } from "../../../../components/core/Table";
 import { generateDimensions } from "../../../../helpers/dimensions";
 import { DEFAULT_LOCALE } from "../../../../constants/localization";
+import { VisualizationEnvironment } from "../../../../components/uri/typings/visualizations";
 
 // removes sorts with other than specified number of locators (counts both measure and attribute locators)
 export const removeSortsWithInvalidLocatorCount = (

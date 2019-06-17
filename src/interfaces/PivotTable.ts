@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { ISeparators } from "@gooddata/numberjs";
 import { AFM } from "@gooddata/typings";
 
@@ -18,4 +18,9 @@ export interface IMenuAggregationClickConfig {
     measureIdentifiers: string[];
     attributeIdentifier: string;
     include: boolean;
+}
+
+export interface IAggregationsMenuColumnTotal {
+    type: AFM.TotalType;
+    attributes: string[];
 }

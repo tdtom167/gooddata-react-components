@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import { shallow } from "enzyme";
 import { factory } from "@gooddata/gooddata-js";
@@ -6,7 +6,7 @@ import { VisualizationObject, AFM } from "@gooddata/typings";
 import { PivotTable } from "../PivotTable";
 import { M1 } from "./fixtures/buckets";
 
-describe("PivotTable", () => {
+describe("PivotTable.ts.tsx", () => {
     const measure: VisualizationObject.IMeasure = {
         measure: {
             localIdentifier: "m1",

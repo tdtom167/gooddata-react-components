@@ -38,9 +38,7 @@ import { IMappingHeader } from "../../interfaces/MappingHeader";
 import { IMenuAggregationClickConfig, IPivotTableConfig } from "../../interfaces/PivotTable";
 import { IDataSourceProviderInjectedProps } from "../afm/DataSourceProvider";
 import { LoadingComponent } from "../simple/LoadingComponent";
-import TotalsUtils, {
-    AVAILABLE_TOTALS as renderedTotalTypesOrder,
-} from "../visualizations/table/totals/utils";
+import TotalsUtils from "../visualizations/table/totals/utils";
 
 import { ICommonChartProps } from "./base/BaseChart";
 import { BaseVisualization } from "./base/BaseVisualization";
@@ -96,6 +94,7 @@ import noop = require("lodash/noop");
 import sumBy = require("lodash/sumBy");
 
 import InjectedIntlProps = ReactIntl.InjectedIntlProps;
+import { AVAILABLE_TOTALS as renderedTotalTypesOrder } from "../visualizations/table/constants/tableConstants";
 
 export interface IPivotTableProps extends ICommonChartProps, IDataSourceProviderInjectedProps {
     totals?: VisualizationObject.IVisualizationTotal[];

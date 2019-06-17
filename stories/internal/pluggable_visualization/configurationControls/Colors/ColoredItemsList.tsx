@@ -4,9 +4,9 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "../../../../../styles/internal/css/config_panel.css";
-import * as ChartConfiguration from "../../../../../src/interfaces/Config";
+import { DEFAULT_COLOR_PALETTE } from "../../../../../src/interfaces/Config";
 import * as MappingHeader from "../../../../../src/interfaces/MappingHeader";
-import { IColorItem, IColor } from "@gooddata/gooddata-js";
+import { IColor, IColorItem } from "@gooddata/gooddata-js";
 import { IColoredItem } from "../../../../../src/internal/interfaces/Colors";
 import ColoredItemsList, {
     IColoredItemsListOwnProps,
@@ -445,7 +445,7 @@ storiesOf("Internal/Pluggable visualization/Configuration controls/Colors/Colore
         SmallScreenDecorator(
             <InternalIntlWrapper>
                 <ColoredItemsList
-                    colorPalette={ChartConfiguration.DEFAULT_COLOR_PALETTE}
+                    colorPalette={DEFAULT_COLOR_PALETTE}
                     inputItems={inputItems}
                     onSelect={action("onSelect")}
                 />
@@ -456,7 +456,7 @@ storiesOf("Internal/Pluggable visualization/Configuration controls/Colors/Colore
         SmallScreenDecorator(
             <InternalIntlWrapper>
                 <ColoredItemsList
-                    colorPalette={ChartConfiguration.DEFAULT_COLOR_PALETTE}
+                    colorPalette={DEFAULT_COLOR_PALETTE}
                     inputItems={longInputItems}
                     onSelect={action("onSelect")}
                 />
@@ -478,7 +478,7 @@ storiesOf("Internal/Pluggable visualization/Configuration controls/Colors/Colore
         SmallScreenDecorator(
             <InternalIntlWrapper>
                 <ColoredItemsListTest
-                    colorPalette={ChartConfiguration.DEFAULT_COLOR_PALETTE}
+                    colorPalette={DEFAULT_COLOR_PALETTE}
                     inputItems={inputItems}
                     onSelect={action("onSelect")}
                 />

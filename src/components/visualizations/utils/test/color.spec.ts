@@ -1,10 +1,9 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { IHeaderPredicate } from "../../../../interfaces/HeaderPredicate";
 import {
     getLighterColor,
     normalizeColorToRGB,
     getColorPaletteFromColors,
-    DEFAULT_COLOR_PALETTE,
     getValidColorPalette,
     getColorMappingPredicate,
 } from "../color";
@@ -14,6 +13,7 @@ import {
     attributeHeader,
     attributeHeaderItem,
 } from "../../../../factory/tests/HeaderPredicateFactory.mock";
+import { DEFAULT_COLOR_PALETTE } from "../constantsColor";
 
 describe("Transformation", () => {
     describe("Lighten color", () => {

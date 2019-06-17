@@ -1,8 +1,7 @@
 // (C) 2019 GoodData Corporation
 import { AFM, Execution } from "@gooddata/typings";
 import aggregationsMenuHelper, { getUpdatedColumnTotals } from "../aggregationsMenuHelper";
-import { IColumnTotal } from "../AggregationsMenu";
-import { IMenuAggregationClickConfig } from "../../../../interfaces/PivotTable";
+import { IAggregationsMenuColumnTotal, IMenuAggregationClickConfig } from "../../../../interfaces/PivotTable";
 import { FIELD_TYPE_ATTRIBUTE, FIELD_TYPE_MEASURE } from "../agGridConst";
 
 describe("aggregationsMenuHelper", () => {
@@ -259,7 +258,7 @@ describe("aggregationsMenuHelper", () => {
     });
 
     describe("isTotalEnabledForAttribute", () => {
-        const columnTotals: IColumnTotal[] = [
+        const columnTotals: IAggregationsMenuColumnTotal[] = [
             {
                 type: "sum",
                 attributes: ["a1", "a2"],
@@ -276,7 +275,7 @@ describe("aggregationsMenuHelper", () => {
         });
 
         it("should return false when there is different total defined for attribute", () => {
-            const columnTotals: IColumnTotal[] = [
+            const columnTotals: IAggregationsMenuColumnTotal[] = [
                 {
                     type: "min",
                     attributes: ["a1", "a2"],

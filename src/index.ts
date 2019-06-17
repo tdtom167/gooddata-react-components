@@ -14,7 +14,7 @@ import { ICommonVisualizationProps } from "./components/core/base/VisualizationL
 import { ErrorComponent } from "./components/simple/ErrorComponent";
 import { LoadingComponent } from "./components/simple/LoadingComponent";
 import { Kpi } from "./components/simple/Kpi";
-import { Visualization, VisualizationEnvironment } from "./components/uri/Visualization";
+import { Visualization } from "./components/uri/Visualization";
 import { ErrorStates, ErrorCodes } from "./constants/errorStates";
 import { VisualizationTypes, ChartType } from "./constants/visualizationTypes";
 import { Execute } from "./execution/Execute";
@@ -59,6 +59,7 @@ import ColorUtils from "./components/visualizations/utils/color";
 import * as HeaderPredicateFactory from "./factory/HeaderPredicateFactory";
 import * as MappingHeader from "./interfaces/MappingHeader";
 import { ICoreComponents } from "./interfaces/CoreComponents";
+import { VisualizationEnvironment } from "./components/uri/typings/visualizations";
 
 /**
  * CoreComponents

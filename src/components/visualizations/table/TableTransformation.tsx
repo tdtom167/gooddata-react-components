@@ -1,10 +1,9 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { AFM, Execution } from "@gooddata/typings";
 import { noop, pick } from "lodash";
 import * as React from "react";
 import { convertDrillableItemsToPredicates } from "../../../helpers/headerPredicate";
-import { IDrillableItem } from "../../../interfaces/DrillEvents";
-import { OnFiredDrillEvent } from "../../../interfaces/Events";
+import { IDrillableItem, OnFiredDrillEvent } from "../../../interfaces/DrillEvents";
 import { IHeaderPredicate } from "../../../interfaces/HeaderPredicate";
 import { IMappingHeader } from "../../../interfaces/MappingHeader";
 

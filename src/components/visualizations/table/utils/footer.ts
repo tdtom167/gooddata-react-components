@@ -1,20 +1,8 @@
-// (C) 2007-2018 GoodData Corporation
-import { getHeaderOffset } from "./header";
+// (C) 2007-2019 GoodData Corporation
 import { getHiddenRowsOffset } from "./row";
 import { IPositions, ITableDimensions } from "../../../../interfaces/Table";
-import { DEFAULT_FOOTER_ROW_HEIGHT, TOTALS_ADD_ROW_HEIGHT } from "../TableVisualization";
 import { ITotalWithData } from "../../../../interfaces/Totals";
-
-export function getFooterHeight(
-    totals: ITotalWithData[],
-    totalsEditAllowed: boolean,
-    totalsAreVisible: boolean,
-): number {
-    return (
-        (totalsAreVisible ? totals.length * DEFAULT_FOOTER_ROW_HEIGHT : 0) +
-        (totalsEditAllowed ? TOTALS_ADD_ROW_HEIGHT : 0)
-    );
-}
+import { getFooterHeight, getHeaderOffset } from "./layoutUtils";
 
 export function isFooterAtDefaultPosition(
     hasHiddenRows: boolean,

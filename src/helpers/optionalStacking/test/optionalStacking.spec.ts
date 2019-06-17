@@ -1,11 +1,11 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { getBucketsProps, getConfigProps } from "../areaChart";
 import { VisualizationObject } from "@gooddata/typings";
-import { IAreaChartProps } from "../../../components/AreaChart";
 import { IChartConfig } from "../../../interfaces/Config";
 import { getViewByTwoAttributes } from "../common";
 import BucketItem = VisualizationObject.BucketItem;
 import IVisualizationAttribute = VisualizationObject.IVisualizationAttribute;
+import { IAreaChartProps } from "../../../proptypes/AreaChart";
 
 function createAttribute(id: number): VisualizationObject.IVisualizationAttribute {
     return {

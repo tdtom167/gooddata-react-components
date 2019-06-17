@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import { AFM, Execution } from "@gooddata/typings";
 import { Header, Item, ItemsWrapper } from "@gooddata/goodstrap/lib/List/MenuList";
@@ -6,8 +6,7 @@ import * as classNames from "classnames";
 
 import { getNthAttributeLocalIdentifier, getNthAttributeName } from "../../../helpers/executionResultHelper";
 import SubMenu from "../../menu/SubMenu";
-import { IMenuAggregationClickConfig } from "../../../interfaces/PivotTable";
-import { IColumnTotal } from "./AggregationsMenu";
+import { IAggregationsMenuColumnTotal, IMenuAggregationClickConfig } from "../../../interfaces/PivotTable";
 import menuHelper from "./aggregationsMenuHelper";
 
 const MENU_HEADER_OFFSET = -36;
@@ -19,7 +18,7 @@ export interface IAggregationsSubMenuProps {
     isMenuOpened?: boolean;
     rowAttributeHeaders: Execution.IAttributeHeader[];
     measureLocalIdentifiers: string[];
-    columnTotals: IColumnTotal[];
+    columnTotals: IAggregationsMenuColumnTotal[];
     onAggregationSelect: (clickConfig: IMenuAggregationClickConfig) => void;
 }
 

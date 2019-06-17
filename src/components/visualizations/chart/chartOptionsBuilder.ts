@@ -2,19 +2,6 @@
 import { colors2Object, numberFormat } from "@gooddata/numberjs";
 import { AFM, Execution, VisualizationObject } from "@gooddata/typings";
 import * as invariant from "invariant";
-import cloneDeep = require("lodash/cloneDeep");
-import compact = require("lodash/compact");
-import escape = require("lodash/escape");
-import get = require("lodash/get");
-import includes = require("lodash/includes");
-import isEmpty = require("lodash/isEmpty");
-import isEqual = require("lodash/isEqual");
-import isUndefined = require("lodash/isUndefined");
-import last = require("lodash/last");
-import range = require("lodash/range");
-import unescape = require("lodash/unescape");
-import without = require("lodash/without");
-import isNil = require("lodash/isNil");
 
 import {
     MEASURES,
@@ -36,21 +23,21 @@ import { isSomeHeaderPredicateMatched } from "../../../helpers/headerPredicate";
 
 import {
     IAxis,
+    ICategory,
     IChartConfig,
     IChartLimits,
+    IChartOptions,
+    IPatternObject,
+    IPointData,
     ISeriesDataItem,
     ISeriesItem,
-    IPointData,
-    IPatternObject,
-    IChartOptions,
     ISeriesItemConfig,
-    ICategory,
 } from "../../../interfaces/Config";
 import { IDrillEventIntersectionElement } from "../../../interfaces/DrillEvents";
 import { IHeaderPredicate } from "../../../interfaces/HeaderPredicate";
 import { IMappingHeader } from "../../../interfaces/MappingHeader";
-import { getLighterColor, GRAY, WHITE, TRANSPARENT } from "../utils/color";
-
+import { getLighterColor } from "../utils/color";
+import { customEscape, formatValueForTooltip, getFormattedValueForTooltip } from "./tooltip";
 import {
     getAttributeElementIdFromAttributeElementUri,
     isAreaChart,
@@ -70,26 +57,37 @@ import { getComboChartSeries } from "./chartOptions/comboChartOptions";
 
 import { ColorFactory, IColorStrategy } from "./colorFactory";
 import {
-    HEATMAP_DATA_POINTS_LIMIT,
-    PIE_CHART_LIMIT,
-    STACK_BY_DIMENSION_INDEX,
-    VIEW_BY_ATTRIBUTES_LIMIT,
-    VIEW_BY_DIMENSION_INDEX,
-    PARENT_ATTRIBUTE_INDEX,
-    PRIMARY_ATTRIBUTE_INDEX,
-} from "./constants";
-import { formatValueForTooltip, getFormattedValueForTooltip } from "./tooltip";
-
-import {
     DEFAULT_CATEGORIES_LIMIT,
     DEFAULT_DATA_POINTS_LIMIT,
     DEFAULT_SERIES_LIMIT,
-} from "./highcharts/commonConfiguration";
+    HEATMAP_DATA_POINTS_LIMIT,
+    PARENT_ATTRIBUTE_INDEX,
+    PIE_CHART_LIMIT,
+    PRIMARY_ATTRIBUTE_INDEX,
+    STACK_BY_DIMENSION_INDEX,
+    VIEW_BY_ATTRIBUTES_LIMIT,
+    VIEW_BY_DIMENSION_INDEX,
+} from "./constants";
+
 import { getChartProperties } from "./highcharts/helpers";
-import { isDataOfReasonableSize } from "./highChartsCreators";
-import { NORMAL_STACK, PERCENT_STACK } from "./highcharts/getOptionalStackingConfiguration";
 
 import { getCategoriesForTwoAttributes } from "./chartOptions/extendedStackingChartOptions";
+import { IUnwrappedAttributeHeadersWithItems } from "./typings/chartOptionsBuilder";
+import { GRAY, TRANSPARENT, WHITE } from "../utils/constantsColor";
+import cloneDeep = require("lodash/cloneDeep");
+import compact = require("lodash/compact");
+import get = require("lodash/get");
+import includes = require("lodash/includes");
+import isEmpty = require("lodash/isEmpty");
+import isEqual = require("lodash/isEqual");
+import isUndefined = require("lodash/isUndefined");
+import last = require("lodash/last");
+import range = require("lodash/range");
+import without = require("lodash/without");
+import isNil = require("lodash/isNil");
+
+export const NORMAL_STACK = "normal";
+export const PERCENT_STACK = "percent";
 
 const isAreaChartStackingEnabled = (options: IChartConfig) => {
     const { type, stacking, stackMeasures } = options;
@@ -163,10 +161,6 @@ export const supportedStackingAttributesChartTypes = [
     VisualizationTypes.COMBO,
     VisualizationTypes.COMBO2,
 ];
-
-export type IUnwrappedAttributeHeadersWithItems = Execution.IAttributeHeader["attributeHeader"] & {
-    items: Execution.IResultAttributeHeaderItem[];
-};
 
 export interface IValidationResult {
     dataTooLarge: boolean;
@@ -242,37 +236,6 @@ export function validateData(limits: IChartLimits, chartOptions: IChartOptions):
         dataTooLarge: !isDataOfReasonableSize(dataToValidate, finalLimits, isViewByTwoAttributes),
         hasNegativeValue: cannotShowNegativeValues(type) && isNegativeValueIncluded(chartOptions.data.series),
     };
-}
-
-export function isDerivedMeasure(measureItem: Execution.IMeasureHeaderItem, afm: AFM.IAfm) {
-    return afm.measures.some((measure: AFM.IMeasure) => {
-        const measureDefinition =
-            get(measure, "definition.popMeasure") || get(measure, "definition.previousPeriodMeasure");
-        const derivedMeasureIdentifier = measureDefinition ? measure.localIdentifier : null;
-        return (
-            derivedMeasureIdentifier &&
-            derivedMeasureIdentifier === measureItem.measureHeaderItem.localIdentifier
-        );
-    });
-}
-
-function findMeasureIndex(afm: AFM.IAfm, measureIdentifier: string): number {
-    return afm.measures.findIndex((measure: AFM.IMeasure) => measure.localIdentifier === measureIdentifier);
-}
-
-export function findParentMeasureIndex(afm: AFM.IAfm, measureItemIndex: number): number {
-    const measureDefinition = afm.measures[measureItemIndex].definition;
-
-    if (AFM.isPopMeasureDefinition(measureDefinition)) {
-        const sourceMeasureIdentifier = measureDefinition.popMeasure.measureIdentifier;
-        return findMeasureIndex(afm, sourceMeasureIdentifier);
-    }
-    if (AFM.isPreviousPeriodMeasureDefinition(measureDefinition)) {
-        const sourceMeasureIdentifier = measureDefinition.previousPeriodMeasure.measureIdentifier;
-        return findMeasureIndex(afm, sourceMeasureIdentifier);
-    }
-
-    return -1;
 }
 
 export function getSeriesItemData(
@@ -714,8 +677,6 @@ export function getSeries(
         };
     });
 }
-
-export const customEscape = (str: string) => str && escape(unescape(str));
 
 const renderTooltipHTML = (textData: string[][]): string => {
     return `<table class="tt-values gd-viz-tooltip-table">${textData
@@ -1560,6 +1521,34 @@ export function getTreemapAttributes(
             1,
         ),
     };
+}
+
+function isDataOfReasonableSize(chartData: any, limits: IChartLimits, isViewByTwoAttributes = false) {
+    let result = true;
+
+    const seriesLimit = get(limits, "series");
+    if (seriesLimit !== undefined) {
+        result = result && chartData.series.length <= seriesLimit;
+    }
+
+    const categoriesLimit = get(limits, "categories");
+    if (categoriesLimit !== undefined) {
+        if (isViewByTwoAttributes) {
+            const categoriesLength = chartData.categories.reduce((result: number, category: any) => {
+                return result + category.categories.length;
+            }, 0);
+            result = result && categoriesLength <= categoriesLimit;
+        } else {
+            result = result && chartData.categories.length <= categoriesLimit;
+        }
+    }
+
+    const dataPointsLimit = get(limits, "dataPoints");
+    if (dataPointsLimit !== undefined) {
+        result = result && chartData.series.every((serie: any) => serie.data.length <= dataPointsLimit);
+    }
+
+    return result;
 }
 
 function getTooltipFactory(

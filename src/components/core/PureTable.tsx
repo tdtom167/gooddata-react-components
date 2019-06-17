@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import noop = require("lodash/noop");
 import difference = require("lodash/difference");
@@ -10,7 +10,6 @@ import { IntlWrapper } from "./base/IntlWrapper";
 import { IntlTranslationsProvider, ITranslationsComponentProps } from "./base/TranslationsProvider";
 import { fixEmptyHeaderItems } from "./base/utils/fixEmptyHeaderItems";
 import { TablePropTypes } from "../../proptypes/Table";
-import { VisualizationEnvironment } from "../uri/Visualization";
 import { IIndexedTotalItem } from "../../interfaces/Totals";
 import { convertToIndexedTotals, convertToTotals } from "../../helpers/TotalsConverter";
 import { IDataSourceProviderInjectedProps } from "../afm/DataSourceProvider";
@@ -25,6 +24,7 @@ import { BaseVisualization } from "./base/BaseVisualization";
 import { Table as IndigoTable, ITableProps as IIndigoTableProps } from "../visualizations/table/Table";
 import { ResponsiveTable } from "../visualizations/table/ResponsiveTable";
 import { TableTransformation } from "../visualizations/table/TableTransformation";
+import { VisualizationEnvironment } from "../uri/typings/visualizations";
 
 export interface ITableProps extends ICommonVisualizationProps {
     height?: number;

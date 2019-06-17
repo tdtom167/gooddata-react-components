@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import {
     TreemapColorStrategy,
     MeasureColorStrategy,
@@ -13,14 +13,22 @@ import {
 
 import { getMVS } from "./helper";
 
-import { DEFAULT_COLOR_PALETTE, HEATMAP_BLUE_COLOR_PALETTE, getRgbString } from "../../utils/color";
+import { getRgbString } from "../../utils/color";
 import { CUSTOM_COLOR_PALETTE } from "../../../../../stories/data/colors";
 
 import * as fixtures from "../../../../../stories/test_data/fixtures";
-import { IColorPalette, IColorPaletteItem, IColorMapping } from "../../../../interfaces/Config";
+import {
+    IColorPalette,
+    IColorPaletteItem,
+    IColorMapping,
+    DEFAULT_COLOR_PALETTE,
+} from "../../../../interfaces/Config";
 import { Execution } from "@gooddata/typings";
 import range = require("lodash/range");
 import { IColorItem, RGBType } from "@gooddata/gooddata-js";
+import { STACK_BY_DIMENSION_INDEX } from "../constants";
+import { HEATMAP_BLUE_COLOR_PALETTE } from "../../utils/constantsColor";
+import { isDerivedMeasure } from "../chartOptionsBuilderUtils";
 
 function getColorsFromStrategy(strategy: IColorStrategy): string[] {
     const res: string[] = [];
@@ -73,6 +81,35 @@ describe("isValidMappedColor", () => {
         };
 
         expect(isValidMappedColor(colorItem, colorPalette)).toBeTruthy();
+    });
+});
+
+describe("isDerivedMeasure", () => {
+    it("should return true if measureItem was defined as a popMeasure", () => {
+        const measureItem =
+            fixtures.barChartWithPopMeasureAndViewByAttribute.executionResponse.dimensions[
+                STACK_BY_DIMENSION_INDEX
+            ].headers[0].measureGroupHeader.items[0];
+        const { afm } = fixtures.barChartWithPopMeasureAndViewByAttribute.executionRequest;
+        expect(isDerivedMeasure(measureItem, afm)).toEqual(true);
+    });
+
+    it("should return true if measureItem was defined as a previousPeriodMeasure", () => {
+        const measureItem =
+            fixtures.barChartWithPreviousPeriodMeasure.executionResponse.dimensions[STACK_BY_DIMENSION_INDEX]
+                .headers[0].measureGroupHeader.items[0];
+        const { afm } = fixtures.barChartWithPreviousPeriodMeasure.executionRequest;
+        expect(isDerivedMeasure(measureItem, afm)).toEqual(true);
+    });
+
+    it("should return false if measureItem was defined as a simple measure", () => {
+        const measureItem =
+            fixtures.barChartWithPopMeasureAndViewByAttribute.executionResponse.dimensions[
+                STACK_BY_DIMENSION_INDEX
+            ].headers[0].measureGroupHeader.items[1];
+        const { afm } = fixtures.barChartWithPopMeasureAndViewByAttribute.executionRequest;
+
+        expect(isDerivedMeasure(measureItem, afm)).toEqual(false);
     });
 });
 

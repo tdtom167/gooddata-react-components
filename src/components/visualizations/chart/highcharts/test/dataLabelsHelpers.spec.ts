@@ -13,7 +13,7 @@ import {
 import { IRectBySize, IAxisRange, IAxisRangeForAxes } from "../helpers";
 import { BLACK_LABEL, WHITE_LABEL, whiteDataLabelTypes } from "../../../../../constants/label";
 import { VisualizationTypes } from "../../../../../constants/visualizationTypes";
-import { NORMAL_STACK, PERCENT_STACK } from "../getOptionalStackingConfiguration";
+import { NORMAL_STACK, PERCENT_STACK } from "../../chartOptionsBuilder";
 
 describe("dataLabelsHelpers", () => {
     describe("getDataLabelAttributes", () => {

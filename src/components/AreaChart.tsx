@@ -1,31 +1,14 @@
 // (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import { omit } from "lodash";
-import { VisualizationObject, VisualizationInput } from "@gooddata/typings";
-
-import { Subtract } from "../typings/subtract";
+import { VisualizationObject } from "@gooddata/typings";
 import { AreaChart as AfmAreaChart } from "./afm/AreaChart";
-
-import { ICommonChartProps } from "./core/base/BaseChart";
 import { convertBucketsToAFM } from "../helpers/conversion";
 import { getStackingResultSpec } from "../helpers/resultSpec";
-import { MEASURES, ATTRIBUTE, STACK } from "../constants/bucketNames";
-import { verifyBuckets, getBucketsProps, getConfigProps } from "../helpers/optionalStacking/areaChart";
-import { sanitizeConfig, sanitizeComputeRatioOnMeasures } from "../helpers/optionalStacking/common";
-
-export interface IAreaChartBucketProps {
-    measures: VisualizationInput.AttributeOrMeasure[];
-    viewBy?: VisualizationInput.IAttribute | VisualizationInput.IAttribute[];
-    stackBy?: VisualizationInput.IAttribute;
-    filters?: VisualizationInput.IFilter[];
-    sortBy?: VisualizationInput.ISort[];
-}
-
-export interface IAreaChartProps extends ICommonChartProps, IAreaChartBucketProps {
-    projectId: string;
-}
-
-type IAreaChartNonBucketProps = Subtract<IAreaChartProps, IAreaChartBucketProps>;
+import { ATTRIBUTE, MEASURES, STACK } from "../constants/bucketNames";
+import { getBucketsProps, getConfigProps, verifyBuckets } from "../helpers/optionalStacking/areaChart";
+import { sanitizeComputeRatioOnMeasures, sanitizeConfig } from "../helpers/optionalStacking/common";
+import { IAreaChartBucketProps, IAreaChartNonBucketProps, IAreaChartProps } from "../proptypes/AreaChart";
 
 /**
  * [AreaChart](http://sdk.gooddata.com/gooddata-ui/docs/area_chart_component.html)

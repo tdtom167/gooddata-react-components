@@ -2,12 +2,12 @@
 import { AFM, Execution, VisualizationObject } from "@gooddata/typings";
 import { DataLayer } from "@gooddata/gooddata-js";
 import { ISeparators } from "@gooddata/numberjs";
-import { VisualizationEnvironment } from "../../components/uri/Visualization";
 import { IDrillableItem } from "../../interfaces/DrillEvents";
 import { OverTimeComparisonType } from "../../interfaces/OverTimeComparison";
 import { ChartType } from "../../constants/visualizationTypes";
 import { IColorPalette } from "../../interfaces/Config";
 import * as VisEvents from "../../interfaces/Events";
+import { VisualizationEnvironment } from "../..";
 
 export type ILocale =
     | "en-US"

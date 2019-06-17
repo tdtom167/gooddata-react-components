@@ -1,6 +1,6 @@
 // (C) 2019 GoodData Corporation
 import { getMinMaxInfo, getZeroAlignConfiguration } from "../getZeroAlignConfiguration";
-import { NORMAL_STACK, PERCENT_STACK } from "../getOptionalStackingConfiguration";
+import { NORMAL_STACK, PERCENT_STACK } from "../../chartOptionsBuilder";
 import { VisualizationTypes } from "../../../../../constants/visualizationTypes";
 import { ISeriesItem, IChartOptions } from "../../../../../interfaces/Config";
 

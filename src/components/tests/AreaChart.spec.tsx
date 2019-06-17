@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
 import { factory } from "@gooddata/gooddata-js";
@@ -23,7 +23,7 @@ function renderChart(
     );
 }
 
-describe("AreaChart", () => {
+describe("AreaChart.ts.tsx", () => {
     it("should render with custom SDK", () => {
         const wrapper = renderChart([M1]);
         expect(wrapper.find(AfmAreaChart)).toHaveLength(1);

@@ -26,7 +26,7 @@ import { IIndexedTotalItem, ITotalWithData } from "../../../../interfaces/Totals
 import { getAttributeElementIdFromAttributeElementUri } from "../../utils/common";
 import { getMasterMeasureObjQualifier } from "../../../../helpers/afmHelper";
 import { createDrillIntersectionElement } from "../../utils/drilldownEventing";
-import { AVAILABLE_TOTALS } from "../totals/utils";
+import { AVAILABLE_TOTALS } from "../constants/tableConstants";
 
 export function getHeaders(executionResponse: Execution.IExecutionResponse): IMappingHeader[] {
     const dimensions: Execution.IResultDimension[] = get(executionResponse, "dimensions", []);

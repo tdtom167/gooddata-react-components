@@ -14,7 +14,6 @@ import {
     getSeries,
     getDrillIntersection,
     getDrillableSeries,
-    customEscape,
     buildTooltipFactory,
     buildTooltipForTwoAttributesFactory,
     generateTooltipHeatmapFn,
@@ -23,16 +22,14 @@ import {
     getBubbleChartSeries,
     getHeatmapDataClasses,
     getTreemapAttributes,
-    isDerivedMeasure,
     IValidationResult,
     getHeatmapSeries,
 } from "../chartOptionsBuilder";
-import { DEFAULT_CATEGORIES_LIMIT } from "../highcharts/commonConfiguration";
 import { generateChartOptions, getMVS, getMVSForViewByTwoAttributes } from "./helper";
 import * as headerPredicateFactory from "../../../../factory/HeaderPredicateFactory";
 import * as fixtures from "../../../../../stories/test_data/fixtures";
-import { PIE_CHART_LIMIT, STACK_BY_DIMENSION_INDEX } from "../constants";
-import { DEFAULT_COLOR_PALETTE, getLighterColor, getRgbString, GRAY, TRANSPARENT } from "../../utils/color";
+import { DEFAULT_CATEGORIES_LIMIT, PIE_CHART_LIMIT, STACK_BY_DIMENSION_INDEX } from "../constants";
+import { getLighterColor, getRgbString } from "../../utils/color";
 
 import {
     TreemapColorStrategy,
@@ -42,8 +39,15 @@ import {
     HeatmapColorStrategy,
     IColorStrategy,
 } from "../colorFactory";
-import { IChartConfig, IColorPaletteItem, IPointData, IChartOptions } from "../../../../interfaces/Config";
+import {
+    IChartConfig,
+    IColorPaletteItem,
+    IPointData,
+    IChartOptions,
+    DEFAULT_COLOR_PALETTE,
+} from "../../../../interfaces/Config";
 import { VisualizationTypes } from "../../../../constants/visualizationTypes";
+import { GRAY, TRANSPARENT } from "../../utils/constantsColor";
 
 const FIRST_DEFAULT_COLOR_ITEM_AS_STRING = getRgbString(DEFAULT_COLOR_PALETTE[0]);
 const SECOND_DEFAULT_COLOR_ITEM_AS_STRING = getRgbString(DEFAULT_COLOR_PALETTE[1]);
@@ -288,36 +292,6 @@ describe("chartOptionsBuilder", () => {
                     expect(validationResult).toEqual(expected);
                 },
             );
-        });
-    });
-
-    describe("isDerivedMeasure", () => {
-        it("should return true if measureItem was defined as a popMeasure", () => {
-            const measureItem =
-                fixtures.barChartWithPopMeasureAndViewByAttribute.executionResponse.dimensions[
-                    STACK_BY_DIMENSION_INDEX
-                ].headers[0].measureGroupHeader.items[0];
-            const { afm } = fixtures.barChartWithPopMeasureAndViewByAttribute.executionRequest;
-            expect(isDerivedMeasure(measureItem, afm)).toEqual(true);
-        });
-
-        it("should return true if measureItem was defined as a previousPeriodMeasure", () => {
-            const measureItem =
-                fixtures.barChartWithPreviousPeriodMeasure.executionResponse.dimensions[
-                    STACK_BY_DIMENSION_INDEX
-                ].headers[0].measureGroupHeader.items[0];
-            const { afm } = fixtures.barChartWithPreviousPeriodMeasure.executionRequest;
-            expect(isDerivedMeasure(measureItem, afm)).toEqual(true);
-        });
-
-        it("should return false if measureItem was defined as a simple measure", () => {
-            const measureItem =
-                fixtures.barChartWithPopMeasureAndViewByAttribute.executionResponse.dimensions[
-                    STACK_BY_DIMENSION_INDEX
-                ].headers[0].measureGroupHeader.items[1];
-            const { afm } = fixtures.barChartWithPopMeasureAndViewByAttribute.executionRequest;
-
-            expect(isDerivedMeasure(measureItem, afm)).toEqual(false);
         });
     });
 
@@ -2281,19 +2255,6 @@ describe("chartOptionsBuilder", () => {
                 });
                 expect(seriesData.map((seriesItem: any) => seriesItem.data)).toEqual(expectedData);
             });
-        });
-    });
-
-    describe("customEscape", () => {
-        it("should encode some characters into named html entities", () => {
-            const source = '&"<>';
-            const expected = "&amp;&quot;&lt;&gt;";
-            expect(customEscape(source)).toBe(expected);
-        });
-        it("should keep &lt; and &gt; untouched (unescape -> escape)", () => {
-            const source = "&lt;&gt;";
-            const expected = "&lt;&gt;";
-            expect(customEscape(source)).toBe(expected);
         });
     });
 

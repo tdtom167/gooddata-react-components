@@ -1,6 +1,6 @@
 // (C) 2007-2019 GoodData Corporation
 import { ISeparators } from "@gooddata/numberjs";
-import { formatValueForTooltip, getFormattedValueForTooltip } from "../tooltip";
+import { customEscape, formatValueForTooltip, getFormattedValueForTooltip } from "../tooltip";
 
 const testFormat: string = "#,##0.00";
 const testPointData = {
@@ -29,6 +29,19 @@ describe("tooltip", () => {
         it("should return formatted value with separators", () => {
             const formattedValue = formatValueForTooltip(858, testFormat, testSeparators);
             expect(formattedValue).toEqual("858_00");
+        });
+    });
+
+    describe("customEscape", () => {
+        it("should encode some characters into named html entities", () => {
+            const source = '&"<>';
+            const expected = "&amp;&quot;&lt;&gt;";
+            expect(customEscape(source)).toBe(expected);
+        });
+        it("should keep &lt; and &gt; untouched (unescape -> escape)", () => {
+            const source = "&lt;&gt;";
+            const expected = "&lt;&gt;";
+            expect(customEscape(source)).toBe(expected);
         });
     });
 

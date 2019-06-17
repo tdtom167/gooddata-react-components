@@ -4,7 +4,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "../../../../../styles/internal/css/config_panel.css";
-import * as ChartConfiguration from "../../../../../src/interfaces/Config";
+import { DEFAULT_COLOR_PALETTE } from "../../../../../src/interfaces/Config";
 import ColorPalette from "../../../../../src/internal/components/configurationControls/colors/colorDropdown/ColorPalette";
 import { getLargePalette } from "../../../../../src/internal/mocks/testColorHelper";
 import { SmallScreenDecorator } from "../../../../utils/SmallScreenDecorator";
@@ -15,7 +15,7 @@ storiesOf("Internal/Pluggable visualization/Configuration controls/Colors/ColorP
         SmallScreenDecorator(
             <InternalIntlWrapper>
                 <ColorPalette
-                    colorPalette={ChartConfiguration.DEFAULT_COLOR_PALETTE}
+                    colorPalette={DEFAULT_COLOR_PALETTE}
                     onColorSelected={action("onColorSelected")}
                 />
             </InternalIntlWrapper>,
@@ -26,7 +26,7 @@ storiesOf("Internal/Pluggable visualization/Configuration controls/Colors/ColorP
             <InternalIntlWrapper>
                 <ColorPalette
                     selectedColorGuid="7"
-                    colorPalette={ChartConfiguration.DEFAULT_COLOR_PALETTE}
+                    colorPalette={DEFAULT_COLOR_PALETTE}
                     onColorSelected={action("onColorSelected")}
                 />
             </InternalIntlWrapper>,

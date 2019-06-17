@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import * as invariant from "invariant";
 import { IHeaderPredicate } from "../../interfaces/HeaderPredicate";
@@ -8,13 +8,12 @@ import isFunction = require("lodash/isFunction");
 import omitBy = require("lodash/omitBy");
 import { Highcharts } from "./chart/Chart";
 import { IChartConfig } from "../../interfaces/Config";
-import { OnFiredDrillEvent } from "../../interfaces/Events";
 
 import { Execution } from "@gooddata/typings";
 
 import { isTable, isChartSupported, stringifyChartTypes } from "./utils/common";
 import { TableTransformation } from "./table/TableTransformation";
-import { IDrillableItem } from "../../interfaces/DrillEvents";
+import { IDrillableItem, OnFiredDrillEvent } from "../../interfaces/DrillEvents";
 import ChartTransformation, { IExecutionRequest, renderHighCharts } from "./chart/ChartTransformation";
 
 export interface IVisualizationProps {

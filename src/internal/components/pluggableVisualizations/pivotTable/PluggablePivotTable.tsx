@@ -44,11 +44,11 @@ import { createInternalIntl } from "../../../utils/internalIntlProvider";
 import { DEFAULT_PIVOT_TABLE_UICONFIG } from "../../../constants/uiConfig";
 import { AbstractPluggableVisualization } from "../AbstractPluggableVisualization";
 import { getReferencePointWithSupportedProperties } from "../../../utils/propertiesHelper";
-import { VisualizationEnvironment } from "../../../../components/uri/Visualization";
 import { VisualizationTypes } from "../../../../constants/visualizationTypes";
 import { PivotTable } from "../../../../components/core/PivotTable";
 import { generateDimensions } from "../../../../helpers/dimensions";
 import { DEFAULT_LOCALE } from "../../../../constants/localization";
+import { VisualizationEnvironment } from "../../../../components/uri/typings/visualizations";
 
 export const getColumnAttributes = (buckets: IBucket[]): IBucketItem[] => {
     return getItemsFromBuckets(

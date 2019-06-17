@@ -1,23 +1,22 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import * as classNames from "classnames";
-import { uniqueId, noop } from "lodash";
+import { noop, uniqueId } from "lodash";
 import { Cell } from "fixed-data-table-2";
-import { injectIntl, InjectedIntlProps } from "react-intl";
+import { InjectedIntlProps, injectIntl } from "react-intl";
 import { ISeparators } from "@gooddata/numberjs";
 import { VisualizationObject } from "@gooddata/typings";
-import { isMappingHeaderMeasureItem, IMappingHeader } from "../../../../interfaces/MappingHeader";
+import { IMappingHeader, isMappingHeaderMeasureItem } from "../../../../interfaces/MappingHeader";
 
-import { DEFAULT_FOOTER_ROW_HEIGHT, TOTALS_ADD_ROW_HEIGHT } from "../TableVisualization";
 import { getCellStyleAndFormattedValue } from "../../../../helpers/tableCell";
-import {
-    getTotalsDataSource,
-    hasTableColumnTotalEnabled,
-    shouldShowAddTotalButton,
-    AVAILABLE_TOTALS,
-} from "./utils";
+import { getTotalsDataSource, hasTableColumnTotalEnabled, shouldShowAddTotalButton } from "./utils";
 import { AddTotal } from "./AddTotal";
-import { ITotalWithData, IIndexedTotalItem } from "../../../../interfaces/Totals";
+import { IIndexedTotalItem, ITotalWithData } from "../../../../interfaces/Totals";
+import {
+    AVAILABLE_TOTALS,
+    DEFAULT_FOOTER_ROW_HEIGHT,
+    TOTALS_ADD_ROW_HEIGHT,
+} from "../constants/tableConstants";
 
 export interface ITotalCellProps {
     totalsWithData: ITotalWithData[];

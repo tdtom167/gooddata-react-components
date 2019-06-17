@@ -7,9 +7,8 @@ import isEqual = require("lodash/isEqual");
 import sortBy = require("lodash/sortBy");
 
 import { FIELD_TYPE_ATTRIBUTE, FIELD_TYPE_MEASURE } from "./agGridConst";
-import { AVAILABLE_TOTALS } from "../../visualizations/table/totals/utils";
-import { IColumnTotal } from "./AggregationsMenu";
-import { IMenuAggregationClickConfig } from "../../../interfaces/PivotTable";
+import { IAggregationsMenuColumnTotal, IMenuAggregationClickConfig } from "../../../interfaces/PivotTable";
+import { AVAILABLE_TOTALS } from "../../visualizations/table/constants/tableConstants";
 
 function getTotalsForMeasureAndType(
     totals: AFM.ITotalItem[],
@@ -47,8 +46,8 @@ function areMeasuresSame(measureLocalIdentifiers1: string[], measureLocalIdentif
 function getTotalsForAttributeHeader(
     totals: AFM.ITotalItem[],
     measureLocalIdentifiers: string[],
-): IColumnTotal[] {
-    return AVAILABLE_TOTALS.reduce((columnTotals: IColumnTotal[], type: AFM.TotalType) => {
+): IAggregationsMenuColumnTotal[] {
+    return AVAILABLE_TOTALS.reduce((columnTotals: IAggregationsMenuColumnTotal[], type: AFM.TotalType) => {
         const uniqueMeasureLocalIdentifiers = getUniqueMeasures(totals, type);
         if (areMeasuresSame(uniqueMeasureLocalIdentifiers, measureLocalIdentifiers)) {
             const attributeLocalIdentifiers = getAttributeIntersection(
@@ -67,8 +66,11 @@ function getTotalsForAttributeHeader(
     }, []);
 }
 
-function getTotalsForMeasureHeader(totals: AFM.ITotalItem[], measureLocalIdentifier: string): IColumnTotal[] {
-    return totals.reduce((turnedOnAttributes: IColumnTotal[], total: AFM.ITotalItem) => {
+function getTotalsForMeasureHeader(
+    totals: AFM.ITotalItem[],
+    measureLocalIdentifier: string,
+): IAggregationsMenuColumnTotal[] {
+    return totals.reduce((turnedOnAttributes: IAggregationsMenuColumnTotal[], total: AFM.ITotalItem) => {
         if (total.measureIdentifier === measureLocalIdentifier) {
             const totalHeaderType = turnedOnAttributes.find(turned => turned.type === total.type);
             if (totalHeaderType === undefined) {
@@ -106,9 +108,9 @@ function getHeaderMeasureLocalIdentifiers(
 function isTotalEnabledForAttribute(
     attributeLocalIdentifier: string,
     totalType: AFM.TotalType,
-    columnTotals: IColumnTotal[],
+    columnTotals: IAggregationsMenuColumnTotal[],
 ): boolean {
-    return columnTotals.some((total: IColumnTotal) => {
+    return columnTotals.some((total: IAggregationsMenuColumnTotal) => {
         return total.type === totalType && total.attributes.includes(attributeLocalIdentifier);
     });
 }

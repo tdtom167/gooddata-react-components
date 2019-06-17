@@ -9,9 +9,9 @@ import * as testMocks from "../../../../mocks/testMocks";
 import * as referencePointMocks from "../../../../mocks/referencePointMocks";
 import * as uiConfigMocks from "../../../../mocks/uiConfigMocks";
 import BaseChartConfigurationPanel from "../../../configurationPanels/BaseChartConfigurationPanel";
-import { VisualizationEnvironment } from "../../../../../components/uri/Visualization";
 import { ChartType, VisualizationTypes } from "../../../../../constants/visualizationTypes";
 import { BaseChart } from "../../../../../components/core/base/BaseChart";
+import { VisualizationEnvironment } from "../../../../../components/uri/typings/visualizations";
 import { DEFAULT_LOCALE } from "../../../../../constants/localization";
 
 jest.mock("react-dom", () => {

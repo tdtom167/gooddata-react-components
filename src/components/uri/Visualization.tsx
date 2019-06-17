@@ -1,18 +1,15 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import * as React from "react";
 import {
-    SDK,
-    factory as createSdk,
-    DataLayer,
     ApiResponse,
-    IPropertiesControls,
+    DataLayer,
+    factory as createSdk,
     IFeatureFlags,
+    IPropertiesControls,
+    SDK,
 } from "@gooddata/gooddata-js";
-import get = require("lodash/get");
-import noop = require("lodash/noop");
-import isEqual = require("lodash/isEqual");
-import { AFM, VisualizationObject, VisualizationClass, Localization } from "@gooddata/typings";
-import { injectIntl, intlShape, InjectedIntlProps } from "react-intl";
+import { AFM, Localization, VisualizationClass, VisualizationObject } from "@gooddata/typings";
+import { InjectedIntlProps, injectIntl, intlShape } from "react-intl";
 import { IHeaderPredicate } from "../../interfaces/HeaderPredicate";
 import { IntlWrapper } from "../core/base/IntlWrapper";
 import { BaseChart } from "../core/base/BaseChart";
@@ -21,16 +18,18 @@ import { SortableTable } from "../core/SortableTable";
 import { PivotTable } from "../PivotTable";
 import { Headline } from "../core/Headline";
 import { IEvents, OnLegendReady } from "../../interfaces/Events";
-import { VisualizationPropType, Requireable } from "../../proptypes/Visualization";
-import { VisualizationTypes, VisType } from "../../constants/visualizationTypes";
+import { Requireable, VisualizationPropType } from "../../proptypes/Visualization";
+import { VisType, VisualizationTypes } from "../../constants/visualizationTypes";
 import { IDataSource } from "../../interfaces/DataSource";
 import { ISubject } from "../../helpers/async";
 import { getVisualizationTypeFromVisualizationClass } from "../../helpers/visualizationType";
 import MdObjectHelper, { mdObjectToPivotBucketProps } from "../../helpers/MdObjectHelper";
 import { fillMissingTitles } from "../../helpers/measureTitleHelper";
-import { LoadingComponent, ILoadingProps } from "../simple/LoadingComponent";
+import { ILoadingProps, LoadingComponent } from "../simple/LoadingComponent";
 import { ErrorComponent, IErrorProps } from "../simple/ErrorComponent";
-import { IDrillableItem, generateDimensions, RuntimeError } from "../../";
+import { IDrillableItem } from "../../interfaces/DrillEvents";
+import { generateDimensions } from "../../helpers/dimensions";
+import { RuntimeError } from "../../errors/RuntimeError";
 import { setTelemetryHeaders } from "../../helpers/utils";
 import { getDefaultTreemapSort } from "../../helpers/sorts";
 import { convertErrors, generateErrorMap, IErrorMap } from "../../helpers/errorHandlers";
@@ -39,11 +38,13 @@ import { getColorMappingPredicate, getColorPaletteFromColors } from "../visualiz
 import { getCachedOrLoad } from "../../helpers/sdkCache";
 import { getFeatureFlags } from "../../helpers/featureFlags";
 import { mergeFiltersToAfm } from "../../helpers/afmHelper";
+import get = require("lodash/get");
+import noop = require("lodash/noop");
+import isEqual = require("lodash/isEqual");
+
 export { Requireable };
 
 const { ExecuteAfmAdapter, toAfmResultSpec, createSubject } = DataLayer;
-
-export type VisualizationEnvironment = "none" | "dashboards";
 
 export interface IVisualizationProps extends IEvents {
     projectId: string;
