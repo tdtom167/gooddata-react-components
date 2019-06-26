@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import { AFM } from "@gooddata/typings";
 import {
     ChartElementType,
@@ -11,7 +11,6 @@ import {
     VisType,
 } from "../constants/visualizationTypes";
 import { TableRowForDrilling } from "./Table";
-import { OnFiredDrillEvent } from "./Events";
 
 export interface IDrillableItemUri {
     uri: string;
@@ -138,9 +137,4 @@ export interface ICellDrillEvent {
     rowIndex: number;
     row: TableRowForDrilling;
     intersection: IDrillEventIntersectionElement[];
-}
-
-export interface IDrillConfig {
-    afm: AFM.IAfm;
-    onFiredDrillEvent: OnFiredDrillEvent;
 }

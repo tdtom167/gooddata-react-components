@@ -18,7 +18,13 @@ import * as numberJS from "@gooddata/numberjs";
 import { styleVariables } from "../../styles/variables";
 import { supportedDualAxesChartTypes, supportedTooltipFollowPointerChartTypes } from "../chartOptionsBuilder";
 import { VisualizationTypes, ChartType } from "../../../../constants/visualizationTypes";
-import { IDataLabelsVisible, IChartConfig, IAxis, IChartOptions } from "../../../../interfaces/Config";
+import {
+    IDataLabelsVisible,
+    IChartConfig,
+    IAxis,
+    IChartOptions,
+    IDrillConfig,
+} from "../../../../interfaces/Config";
 import { percentFormatter } from "../../../../helpers/utils";
 import {
     formatAsPercent,
@@ -49,7 +55,6 @@ import {
 } from "../highcharts/helpers";
 
 import getOptionalStackingConfiguration from "./getOptionalStackingConfiguration";
-import { IDrillConfig } from "../../../../interfaces/DrillEvents";
 import { getZeroAlignConfiguration } from "./getZeroAlignConfiguration";
 
 const { stripColors, numberFormat }: any = numberJS;

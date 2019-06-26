@@ -1,4 +1,4 @@
-// (C) 2007-2018 GoodData Corporation
+// (C) 2007-2019 GoodData Corporation
 import get = require("lodash/get");
 import debounce = require("lodash/debounce");
 import * as CustomEvent from "custom-event";
@@ -16,7 +16,6 @@ import {
     IDrillEventContextTable,
     IDrillPoint,
     IHighchartsPointObject,
-    IDrillConfig,
     ICellDrillEvent,
     isGroupHighchartsDrillEvent,
     IDrillEventContextPoint,
@@ -24,6 +23,7 @@ import {
 } from "../../../interfaces/DrillEvents";
 import { OnFiredDrillEvent } from "../../../interfaces/Events";
 import { isComboChart, isHeatmap, isTreemap } from "./common";
+import { IDrillConfig } from "../../../interfaces/Config";
 
 export function getClickableElementNameByChartType(type: VisType): ChartElementType {
     switch (type) {
