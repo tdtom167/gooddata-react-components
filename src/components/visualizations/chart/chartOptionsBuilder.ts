@@ -86,7 +86,6 @@ import {
     DEFAULT_SERIES_LIMIT,
 } from "./highcharts/commonConfiguration";
 import { getChartProperties } from "./highcharts/helpers";
-import { isDataOfReasonableSize } from "./highChartsCreators";
 import { NORMAL_STACK, PERCENT_STACK } from "./highcharts/getOptionalStackingConfiguration";
 
 import { getCategoriesForTwoAttributes } from "./chartOptions/extendedStackingChartOptions";
@@ -95,6 +94,7 @@ import {
     IUnwrappedAttributeHeadersWithItems,
     IValidationResult,
 } from "../../../interfaces/ChartOptions";
+import {isDataOfReasonableSize} from "../utils/chart";
 
 const isAreaChartStackingEnabled = (options: IChartConfig) => {
     const { type, stacking, stackMeasures } = options;
