@@ -94,7 +94,7 @@ import {
     IUnwrappedAttributeHeadersWithItems,
     IValidationResult,
 } from "../../../interfaces/ChartOptions";
-import {isDataOfReasonableSize} from "../utils/chart";
+import { isDataOfReasonableSize } from "../utils/chart";
 
 const isAreaChartStackingEnabled = (options: IChartConfig) => {
     const { type, stacking, stackMeasures } = options;
