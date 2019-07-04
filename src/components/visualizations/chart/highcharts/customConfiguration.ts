@@ -56,7 +56,7 @@ import {
 
 import getOptionalStackingConfiguration from "./getOptionalStackingConfiguration";
 import { getZeroAlignConfiguration } from "./getZeroAlignConfiguration";
-import {supportedDualAxesChartTypes} from "../../../../constants/chart";
+import { supportedDualAxesChartTypes } from "../../../../constants/chart";
 
 const { stripColors, numberFormat }: any = numberJS;
 
